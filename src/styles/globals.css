@@ -14,3 +14,7 @@
         @apply cursor-pointer mx-4 border-2 p-2 border-red-700 shadow-blue-600 hover:text-[#b5b5b5]
     }
 }
+
+.shadow_text {
+    text-shadow: 1px 1px 1px red;
+}
