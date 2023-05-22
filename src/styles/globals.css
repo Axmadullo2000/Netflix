@@ -11,6 +11,6 @@
 
 @layer components {
     .navLink {
-        @apply cursor-pointer mx-4 font-light hover:text-[#b5b5b5]
+        @apply cursor-pointer mx-4 border-2 p-2 border-red-700 shadow-blue-600 hover:text-[#b5b5b5]
     }
 }

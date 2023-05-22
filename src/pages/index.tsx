@@ -1,11 +1,13 @@
 import Head from 'next/head'
 
-import {Header, Row} from './components'
-import { Inter } from '@next/font/google'
+import {Header} from './components'
+import {API_REQUEST} from "src/services/api.service";
+import {GetServerSideProps} from "next";
+import {IMovies} from "@/interfaces/app.interface";
+import Hero from "@/pages/components/hero/hero";
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({trending}: HomeProps) {
   return (
     <div className='flex min-h-screen flex-col pb-2'>
       <Head>
@@ -16,8 +18,25 @@ export default function Home() {
       </Head>
 
     <Header/>
-      <main>
+      <main className={'relative pl-4 pb-24 lg:space-y-24 lg:pl-16'}>
+        <Hero trending={trending}/>
       </main>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+  const res = await fetch(API_REQUEST.trending);
+  const data = await res.json()
+
+  return {
+    props: {
+      trending: data.results
+    }
+  }
+}
+
+
+interface HomeProps {
+  trending: IMovies[]
 }

@@ -23,21 +23,22 @@ function Header() {
 
 
     return (
-        <header className={`flex justify-between ${scroll && 'bg-[#e10856]'}`}>
+        <header className={`flex justify-between ${scroll && 'bg-[#e10856]'} z-[9999]`}>
             <div className={'flex space-x-2 items-center'}>
                 <Image src={'./logo.svg'} alt={'logo'} width={56} height={56} className={'mx-4'}/>
                 <ul className={'md:flex hidden'}>
-                   <li className={'navLink'}>Home</li>
-                   <li className={'navLink'}>About</li>
-                   <li className={'navLink'}>Settings</li>
-                   <li className={'navLink'}>Contacts</li>
+                   <li className={'navLink'}>Главная</li>
+                   <li className={'navLink'}>Фильмы</li>
+                   <li className={'navLink'}>ТВ Передачи</li>
+                   <li className={'navLink'}>Новые</li>
+                    <li className={'navLink'}>Популярные</li>
                 </ul>
             </div>
-            <div className={'flex items-center space-x-4 mr-5' }>
-                <Image src={'./search.svg'} alt={'search'} width={30} height={30}/>
+            <div className={'flex items-center space-x-4 mr-4' }>
+                <Image src={'./search.svg'} alt={'search'} className={'h-6 w-6 cursor-pointer'} width={30} height={30}/>
                 <p className={'md:block hidden'}>Kids</p>
-                <Image src={'./notification.svg'} width={30} height={30} alt={'Notification'} />
-                <Link href={'/account'}><Image src={'./user.svg'} alt={"User"} width={30} height={30}/></Link>
+                <Image src={'./notification.svg'} className={'h-6 w-6 cursor-pointer'} width={30} height={30} alt={'Notification'} />
+                <Link href={'/account'}><Image src={'./user.svg'} alt={"User"} width={30} height={30} className={'h-6 w-6 cursor-pointer'}/></Link>
             </div>
         </header>
     );
