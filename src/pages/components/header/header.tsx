@@ -23,7 +23,7 @@ function Header() {
 
 
     return (
-        <header className={`flex justify-between ${scroll && 'bg-[#e10856]'} z-[9999]`}>
+        <header className={`flex justify-between ${scroll && 'bg-[#e10856]'} z-[9999] h-20`}>
             <div className={'flex space-x-2 items-center'}>
                 <Image src={'./logo.svg'} alt={'logo'} width={56} height={56} className={'mx-4'}/>
                 <ul className={'md:flex hidden'}>

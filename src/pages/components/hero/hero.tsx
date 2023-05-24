@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import ReactStars from 'react-stars'
+import Image from "next/image";
+
 import {HeroProps} from "@/pages/components/hero/hero.interface";
 import {IMovies} from "@/interfaces/app.interface";
-import Image from "next/image";
 import {tmdbBaseUrl} from "@/helpers/constants";
-import ReactStars from 'react-stars'
+
 
 function Hero({trending}: HeroProps): JSX.Element {
     const [movie, setMovie] = useState<IMovies>({} as IMovies)
@@ -12,8 +14,6 @@ function Hero({trending}: HeroProps): JSX.Element {
         const randomMovie = trending[Math.floor(Math.random() * trending.length)]
         setMovie(randomMovie)
     }, [trending])
-
-    console.log(movie)
 
     return (
         <div className={'flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:pb-12 lg:justify-end'}>

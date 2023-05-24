@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
     body {
-        @apply bg-black text-white
+        @apply bg-black text-white scrollbar scrollbar-thumb-[#e10856] scrollbar-track-transparent scrollbar-thin
     }
 }
 

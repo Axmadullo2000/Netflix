@@ -5,6 +5,7 @@ const api_key = process.env.NEXT_PUBLIC_API_KEY as string
 
 
 export const API_REQUEST = {
-    trending: `${base_url}/trending/movie/week?api_key=${api_key}&language=ru-Ru`
+    trending: `${base_url}/trending/movie/week?api_key=${api_key}&language=ru-Ru`,
+    top_rated: `${base_url}/movie/top_rated?api_key=${api_key}&language=ru-Ru`
 }
 
