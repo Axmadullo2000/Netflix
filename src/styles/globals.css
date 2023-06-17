@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply bg-black text-white scrollbar scrollbar-thumb-[#e10856] scrollbar-track-transparent scrollbar-thin
+        @apply bg-black/95 text-white scrollbar scrollbar-thumb-[#e10856] scrollbar-track-transparent scrollbar-thin
     }
 }
 
@@ -12,8 +12,33 @@
     .navLink {
         @apply cursor-pointer mx-4 border-2 p-2 border-red-700 shadow-blue-600 hover:text-[#b5b5b5]
     }
+    .input {
+        @apply md:min-w-[400px] min-w-[350px] block my-2 placeholder-slate-300 p-2.5 outline-0 bg-[#1c1c1c] focus:bg-pink-600 text-white
+    }
+    .auth_btn {
+        @apply bg-pink-700 p-4 md:min-w-[400px] min-w-[350px] hover:bg-red-400
+    }
 }
 
 .shadow_text {
     text-shadow: 1px 1px 1px red;
+}
+
+
+.row_top {
+    margin: 40px 0;
+}
+
+.customButton {
+    border-radius: 50%;
+    border: 1px solid silver;
+    margin: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.watchNow > * {
+    fill: white;
+    color: white;
 }
