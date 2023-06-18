@@ -54,7 +54,7 @@ function Modal() {
                             </>
                         ) : (
                             <>
-                                <Image src={'./pause.svg'} alt={'pause'} width={28} height={28}  />
+                                <Image src={'./pause.svg'} alt={'pause'} width={28} height={28} />
                                 Pause
                             </>
                         )}
@@ -75,7 +75,7 @@ function Modal() {
 
                 <div className={'z-50 absolute bg-black flex justify-center bottom-0 mt-4 flex-col px-5 w-full'}>
                     <div className={'flex items-center px-3 py-4'}>
-                        <p className={'text-green-400 mx-0.5'}>{currentMovie?.vote_average * 10}% Match</p>
+                        <p className={'text-green-400 mx-0.5'}>{Math.floor(currentMovie?.vote_average) * 10}% Match</p>
                         <p className={' mx-0.5'}>{currentMovie?.release_date}</p>
                         <p className={'border rounded px-0.5 py-0.5 mx-0.5'}>HD</p>
                     </div>

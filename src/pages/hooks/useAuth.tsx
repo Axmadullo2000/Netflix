@@ -3,7 +3,6 @@ import {auth} from "src/firebase";
 import {useState} from "react"
 import {useRouter} from "next/router";
 
-
 export const useAuth = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>('')
@@ -45,3 +44,4 @@ export const useAuth = () => {
 
     return {isLoading, error, user, signUp, signIn, logout, setIsLoading, setUser}
 }
+

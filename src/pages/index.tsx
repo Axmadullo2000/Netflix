@@ -2,20 +2,25 @@ import Head from 'next/head'
 import {useContext} from "react";
 import {GetServerSideProps} from "next";
 
-import {Header} from './components'
-import Hero from "@/pages/components/hero/hero";
-import {API_REQUEST} from "src/services/api.service";
-import Row from "./components/row/row";
+import {Header, Row, Hero, SubscriptionPlan} from './components'
 
+import {API_REQUEST} from "src/services/api.service";
 import {AuthContext} from "@/context/auth.context";
+
 import {IMovies} from "@/interfaces/app.interface";
+
 import {useInfoStore} from "@/store";
-import Modal from "@/pages/components/modal";
+
+import {Modal} from "@/pages/components";
 
 
 export default function Home({trending, top_rated, popular, tvTop}: HomeProps) {
   const { isLoading, user } = useContext(AuthContext)
   const {modal, setModal} = useInfoStore()
+
+  const subscription = false
+
+  if (!subscription) return <SubscriptionPlan />
 
   if (isLoading) return null
 

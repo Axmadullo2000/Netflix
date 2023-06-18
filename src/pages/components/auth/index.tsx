@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
-import InputElement from "@/pages/components/InputElement";
+import {InputElement} from "@/pages/components";
 import {AuthContext} from "@/context/auth.context";
 
 function AccountComponent() {
