@@ -7,20 +7,21 @@ import {Header, Row, Hero, SubscriptionPlan} from './components'
 import {API_REQUEST} from "src/services/api.service";
 import {AuthContext} from "@/context/auth.context";
 
-import {IMovies} from "@/interfaces/app.interface";
+import {IMovies, Products} from "@/interfaces/app.interface";
 
 import {useInfoStore} from "@/store";
 
 import {Modal} from "@/pages/components";
 
 
-export default function Home({trending, top_rated, popular, tvTop}: HomeProps) {
+export default function Home({trending, top_rated, popular, tvTop, products}: HomeProps) {
   const { isLoading, user } = useContext(AuthContext)
   const {modal, setModal} = useInfoStore()
 
+    console.log(products)
   const subscription = false
 
-  if (!subscription) return <SubscriptionPlan />
+  if (!subscription) return <SubscriptionPlan products={products} />
 
   if (isLoading) return null
 
@@ -51,18 +52,13 @@ export default function Home({trending, top_rated, popular, tvTop}: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-  const urls = [
-    API_REQUEST.trending,
-    API_REQUEST.top_rated,
-    API_REQUEST.popular,
-    API_REQUEST.tvTop
-  ]
 
-  const [trending, top_rated, popular, tvTop] = await Promise.all([
+  const [trending, top_rated, popular, tvTop, products] = await Promise.all([
       fetch(API_REQUEST.trending).then(res => res.json()),
       fetch(API_REQUEST.top_rated).then(res => res.json()),
       fetch(API_REQUEST.popular).then(res => res.json()),
       fetch(API_REQUEST.tvTop).then(res => res.json()),
+      fetch(API_REQUEST.productList).then(res => res.json()),
   ])
 
   return {
@@ -70,7 +66,8 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
       trending: trending.results,
       top_rated: top_rated.results,
       popular: popular.results,
-      tvTop: tvTop.results
+      tvTop: tvTop.results,
+      products: products.products.data
     }
   }
 }
@@ -79,6 +76,6 @@ interface HomeProps {
   trending: IMovies[],
   top_rated: IMovies[],
   popular: IMovies[],
-  tvTop: IMovies[]
+  tvTop: IMovies[],
+  products: Products[]
 }
-

@@ -1,5 +1,3 @@
-import {DateSchema} from "yup";
-
 export interface IMovies {
     adult:             boolean;
     backdrop_path:     string;
@@ -24,3 +22,18 @@ export interface Element {
     type: "Trailer" | "Clip" | "Opening Credits" | "Behind the Scenes"
     key: string
 }
+
+export interface Products {
+    default_price: {
+        id: string,
+        nickname: string,
+        unit_amount: number
+    }
+    id: string,
+    images: string[],
+    metadata: {
+        adv: string
+    },
+    name: string
+}
+

@@ -9,7 +9,6 @@ import {useRouter} from "next/router";
 const Auth = () => {
     const { user, isLoading } = useContext(AuthContext)
     const router = useRouter()
-    console.log(user)
 
     if (user) router.push('/')
     if (user && !isLoading) return null
