@@ -5,10 +5,12 @@ import * as Yup from 'yup'
 
 import {InputElement} from "@/pages/components";
 import {AuthContext} from "@/context/auth.context";
+import {useAuth} from "@/pages/hooks/useAuth";
 
 function AccountComponent() {
     const [auth, setAuth] = useState<'login' | 'signup'>('login')
     const { error, isLoading, user, signIn, signUp, logout } = useContext(AuthContext)
+    const {setIsLoading} = useAuth()
 
     const authToggle = (data: 'login' | 'signup') => {
         setAuth(data)
@@ -19,9 +21,18 @@ function AccountComponent() {
         password: string
     }
 
-    const onSubmit = (data: IData) => {
+    const onSubmit = async (data: IData) => {
         if (auth === 'signup') {
+            setIsLoading(true)
+            const response = await fetch('/api/customers/', {
+                method: 'POST',
+                headers: {'Content-type': "application/json"},
+                body: JSON.stringify({email: data.email})
+            })
+            await response.json()
+
             signUp(data.email, data.password)
+
         }else {
             signIn(data.email, data.password)
         }

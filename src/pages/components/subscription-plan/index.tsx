@@ -15,7 +15,7 @@ function SubscriptionPlan({products}: ISubscriptionProps) {
                 <button onClick={logout} className={'px-2 py-2 hover:text-red-300'}>Logout</button>
             </div>
 
-            <div className={''}>
+            <div>
                 <h1 className={'text-3xl mt-8 mb-4 text-center'}>Выберите подходящий план</h1>
                 <div className={'mb-10'}>
                     <div className={'flex justify-center text-justify items-center'}><Image src={'./check.svg'} alt={''} width={28} height={28} />Неограниченный просмотр. Без рекламы.</div>
@@ -35,4 +35,3 @@ function SubscriptionPlan({products}: ISubscriptionProps) {
 }
 
 export default SubscriptionPlan;
-
