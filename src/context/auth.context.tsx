@@ -36,10 +36,8 @@ const AuthProvider = ({children}: {children: ReactNode}) => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                setIsLoading(false)
                 setUser(user)
             }else {
-                setIsLoading(true)
                 setUser(null)
                 router.push('/auth')
             }

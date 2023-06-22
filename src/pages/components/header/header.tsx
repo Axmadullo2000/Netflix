@@ -42,7 +42,7 @@ function Header() {
                 <p className={'md:block hidden'}>Kids</p>
                 <Image src={'./notification.svg'} className={'h-6 w-6 cursor-pointer'} width={30} height={30} alt={'Notification'} />
                 <Link href={'/account'}><Image src={'./user.svg'} alt={"User"} width={30} height={30} className={'h-6 w-6 cursor-pointer'}/></Link>
-                <img src={'./logout.svg'} width={'40'} height={'40'} alt={'logout'} className={'cursor-pointer'} onClick={logout}/>
+                <Image src={'./logout.svg'} width={'40'} height={'40'} alt={'logout'} className={'cursor-pointer'} onClick={logout}/>
             </div>
         </header>
     );

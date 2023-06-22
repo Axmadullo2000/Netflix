@@ -13,16 +13,17 @@ export default async function handler(
 ) {
 
     const {method} = req
-    const {priceId, email} = req.body
-
-    const customers = await stripe.customers.list({
-        limit: 100,
-    })
-
-    const customer = customers.data.find(c => c.email === email)
 
     if (method === 'POST') {
         try {
+            const {priceId, email} = req.body
+
+            const customers = await stripe.customers.list({
+                limit: 100,
+            })
+
+            const customer = customers.data.find(c => c.email === email)
+
             const public_domain = process.env.NEXT_PUBLIC_DOMAIN as string
 
             const subscription = await stripe.checkout.sessions.create({
@@ -34,7 +35,7 @@ export default async function handler(
                 }],
                 customer: customer?.id,
                 success_url: `${public_domain}/success`,
-                cancel_url: `${public_domain}/error`
+                cancel_url: `${public_domain}/cancel`
             })
 
             return res.status(200).json({subscription})
@@ -49,4 +50,3 @@ interface Data {
     message?: string
     subscription?: Stripe.Response<Stripe.Checkout.Session>
 }
-

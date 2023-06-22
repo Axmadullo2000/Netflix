@@ -24,12 +24,6 @@ function AccountComponent() {
     const onSubmit = async (data: IData) => {
         if (auth === 'signup') {
             setIsLoading(true)
-            const response = await fetch('/api/customers/', {
-                method: 'POST',
-                headers: {'Content-type': "application/json"},
-                body: JSON.stringify({email: data.email})
-            })
-            await response.json()
 
             signUp(data.email, data.password)
 
@@ -66,3 +60,4 @@ function AccountComponent() {
 }
 
 export default AccountComponent;
+

@@ -1,11 +1,13 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Image from "next/image";
 
 import {IPlanCardProps} from "@/pages/components/plan-card/plan-card.props";
 import {AuthContext} from "@/context/auth.context";
 
+
 function PlanCard({product}: IPlanCardProps) {
     const {user} = useContext(AuthContext)
+    const [buy, setBuy] = useState(true)
 
     const onSubmitSubscription = async (priceId: string) => {
         const payload = {email: user?.email, priceId} as object
@@ -21,9 +23,15 @@ function PlanCard({product}: IPlanCardProps) {
 
             window.open(data.subscription.url)
 
-            console.log(data)
-
         }catch (error) {}
+    }
+
+    const onSubmit = () => {
+        onSubmitSubscription(product?.default_price?.id)
+        setTimeout(() => {
+            setBuy(true)
+        }, 1500)
+        setBuy(false)
     }
 
     return (
@@ -39,10 +47,13 @@ function PlanCard({product}: IPlanCardProps) {
                     </div>
                 ))}
             </div>
-            <button onClick={() => onSubmitSubscription(product?.default_price?.id)} className={'px-2 py-3 w-full border-red-500 border-2 my-4 hover:text-slate-100 hover:bg-red-500 hover:border-white transition duration-400 ease-in'}>Купить</button>
+            <button onClick={onSubmit} className={'px-2 py-3 w-full border-red-500 border-2 my-4 hover:text-slate-100 hover:bg-red-500 hover:border-white transition duration-400 ease-in'}>
+                {buy ? 'Купить' : 'Ожидание...'}
+            </button>
         </div>
     );
 }
 
 export default PlanCard;
+
 

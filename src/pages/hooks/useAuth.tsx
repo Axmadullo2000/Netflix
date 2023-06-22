@@ -2,6 +2,7 @@ import {User, signOut, signInWithEmailAndPassword, createUserWithEmailAndPasswor
 import {auth} from "src/firebase";
 import {useState} from "react"
 import {useRouter} from "next/router";
+import Cookies from 'js-cookie'
 
 export const useAuth = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -15,6 +16,8 @@ export const useAuth = () => {
             .then(res => {
                 setUser(res.user)
                 router.push('/')
+                Cookies.set('token', res.user.uid)
+
             })
             .catch((error) => setError(error.message))
             .finally(() => setIsLoading(false))
@@ -26,6 +29,14 @@ export const useAuth = () => {
                 setIsLoading(true)
                 setUser(res.user)
                 router.push('/')
+                fetch('/api/customers/', {
+                    method: 'POST',
+                    headers: {'Content-type': "application/json"},
+                    body: JSON.stringify({email: res.user.email, token: res.user.uid})
+                })
+
+                Cookies.set('token', res.user.uid)
+
             })
             .catch((error) => setError(error.message))
             .finally(() => setIsLoading(false))
@@ -37,6 +48,7 @@ export const useAuth = () => {
             .then(() => {
                 setUser(null)
                 router.push('/auth')
+                Cookies.remove('token')
             })
             .catch(error => setError(error.message))
             .finally(() => setIsLoading(false))

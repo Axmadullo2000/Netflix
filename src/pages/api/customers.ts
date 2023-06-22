@@ -12,10 +12,12 @@ export default async function handler(
     res: NextApiResponse<Data>
 ) {
     const {method} = req
+    const {email, token} = req.body
     if (method === 'POST') {
         try {
             const customer = await stripe.customers.create({
-                email: req.body
+                email,
+                metadata: {token}
             })
 
             return res.status(200).json({customer})

@@ -1,18 +1,9 @@
 import Head from "next/head";
 import AccountComponent from "@/pages/components/auth";
 import Image from "next/image";
-import {useAuth} from "@/pages/hooks/useAuth";
-import {useContext} from "react";
-import {AuthContext} from "@/context/auth.context";
-import {useRouter} from "next/router";
+import {GetServerSideProps} from "next";
 
 const Auth = () => {
-    const { user, isLoading } = useContext(AuthContext)
-    const router = useRouter()
-
-    if (user) router.push('/')
-    if (user && !isLoading) return null
-
     return <div className={'bg-black md:bg-transparent'}>
         <Head>
             <title>Auth</title>
@@ -29,3 +20,19 @@ const Auth = () => {
 }
 
 export default Auth
+
+export const getServerSideProps: GetServerSideProps = async ({req}) => {
+    const token = req.cookies.token
+
+    if (token) {
+        return {
+            redirect: {
+                destination: '/', permanent: false
+            }
+        }
+    }
+    return {
+        props: {}
+    }
+}
+

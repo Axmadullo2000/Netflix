@@ -4,4 +4,4 @@ export {default as Hero} from './hero/hero'
 export {default as InputElement} from './InputElement'
 export {default as Modal} from './modal'
 export {default as SubscriptionPlan} from './subscription-plan'
-
+export {default as MembershipPlan} from './membership-plan'
